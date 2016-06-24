@@ -1,0 +1,92 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Little Pony Fan Page - Friendship is Magic</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      background-image: url(images/my-little-pony-friendship-is-magic.jpg);
+    }
+
+    li {
+      cursor: pointer;
+    }
+    .votes {
+      cursor: pointer;
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: green;
+    }
+    .text-pony {
+      color: #F3AAC5;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header text-pony">
+        <h1>My Little Pony Fan Page - Friendship is Magic</h1>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="panel-group">
+      <div class="panel">
+        <div class="panel-heading">Post a message for all fans of My Little Pony to see!</div>
+        <div class="panel-body">
+
+          <form id="message-form">
+            <div class="form-group">
+              <label>Message:</label>
+              <textarea id="message" type="text" class="form-control"></textarea>
+            </div>
+            <button class="btn btn-default">Post to board</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">Message Board</div>
+        <div class="panel-body">
+          <ul class="message-board">
+
+            <!-- messages get appended here -->
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.js"></script>
+
+  <!-- js -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>

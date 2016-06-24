@@ -1,12 +1,33 @@
 ## Lesson 17 Final My Little Pony App Code
 
-There are a couple of versions in this repository:
+There are a few versions in this repository:
 
-1. The version we had at the end of class, very slightly cleaned up and with errors corrected
+#### 1. 
 
-2. A version I just made in which the code is broken down into functions (and some variable names are changed slightly). For me this is easier to read, partly because all of the functions fit on one screen. 
+The version we had at the end of class, very slightly cleaned up and with errors corrected.
 
->___Note:___ I did not correct the biggest variable naming mistake I made, which was to use the word `votes` instead of something like `voteCount`. 
+#### 2. 
+
+A version I made in which the code is broken down into functions (and some variable names are changed slightly). For me this is easier to read, partly because all of the functions fit on one screen. 
+
+#### Bonus. 
+
+A version I made based on #2, but storing state in a different way. 
+
+Remember how in class we talked about how we were storing all the information about votes and weirdIds in closures, and setting event listeners for every message, which had access to the right vote count and the right weirdId, in a closure? 
+
+Well, in this Bonus version, we're not making use of the fact that that stuff is stored in closures; instead we're storing it in two different places: 
+
+- We're storing the main messages object with all the votes and messages, that we get from Firebase as global state, at the top level in a variable called "messages", just like we did with "articles" in the Feedr project. 
+- We're storing the weirdId on each element in the DOM itself, as something called ah html "data attribute". In this case we're setting a "data-weird-id" attribute on each message `li`, which will contain the weirdId. 
+
+Then we're using event delegation to set one listener each, for vote updating and message deletion, and when the listeners are triggered, we're extracting the weirdId from the "data-weird-id" attribute of the message element itself, then using that both to access the right message on the server, and to get information about the votes from the main state variable, "messages".
+
+Both of these methods are equally good. I kind of prefer the closure one because it's simpler and shorter, and you ***already*** have the closed-over variables in place, so you might as well make use of that.
+
+---
+
+>___Note:___ In all of these, I did not correct the biggest variable naming mistake I made, which was to use the word `votes` instead of something like `voteCount`. 
 
 >As we discovered in class, not only is the word `votes` frightful to read when combined with `span` to become `votesSpan`, but a bigger problem is that plural words typically imply a collection of items, whereas `votes` is just a number. 
 
