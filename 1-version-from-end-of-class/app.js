@@ -75,16 +75,18 @@ $('#message-form').on('submit', function(event) {
 messagesInFirebase.on('value', function(results) {
   $('.message-board').empty();
 
-  var messages = results.val();
+  // Extract readable version of results
+  // (or an empty object if there are no results)
+  var messages = results.val() || {};
 
+  // Sort weirdIds by the descending vote count 
+  // of their corresponding messages
   var unsortedWeirdIds = Object.keys(messages);
   var weirdIds = _.sortBy(unsortedWeirdIds, function(weirdId) {
     return messages[weirdId].votes;
   }).reverse();
 
-  console.log(unsortedWeirdIds);
-  console.log(weirdIds);
-
+  // Render messages in the DOM (including their event listeners)
   weirdIds.forEach(function(weirdId) {
     var messageObject = messages[weirdId];
     var message = messageObject.message;
@@ -92,24 +94,22 @@ messagesInFirebase.on('value', function(results) {
 
     var messageInFirebase = firebaseDB.ref('messages/' + weirdId);
 
+    // Make vote count span with upvoting listener
     var $votesSpan = $('<span>').addClass('votes').html(votes);
-
     $votesSpan.on('click', function() {
-      // console.log(messageObject);
-      // console.log(weirdId);
       messageInFirebase.update({
         votes: votes + 1
       });
     });
 
+    // Make message li with deletion listener
     var $messageLi = $('<li>').html(message).append($votesSpan);
-
     $messageLi.on('dblclick', function() {
       messageInFirebase.remove();
     });
 
+    // Add them to the DOM
     $('.message-board').append($messageLi);
   });
 
 });
-

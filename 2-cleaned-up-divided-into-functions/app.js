@@ -87,7 +87,8 @@ function setMessagesChangeListener() {
     $('.message-board').empty();
 
     // Extract readable version of results
-    var messages = results.val();
+    // (or an empty object if there are no results)
+    var messages = results.val() || {};
 
     // Sort weirdIds by the descending vote count 
     // of their corresponding messages
